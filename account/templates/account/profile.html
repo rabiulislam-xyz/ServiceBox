@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+</head>
+    <body>
+    {#    these fields User profile model #}
+        username: {{ user.username }}<br/>
+        first_name: {{ user.first_name }}<br/>
+        last_name: {{ user.last_name }}<br/>
+        email: {{ user.email }}<br/><hr/>
+
+    {#    these fields from Profile model #}
+        website: {{ user.profile.website }}<br/>
+        location: {{ user.profile.location }}<br/>
+        photo url: {{ user.profile.photo }}
+        photo: <img src="{{user.profile.photo}}">
+
+
+    <a href="{% url 'account:update_profile' %}">edit</a>
+    </body>
+</html>
