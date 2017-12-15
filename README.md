@@ -2,4 +2,4 @@
 
 upcomming platform for local freelancer!
 
-demo : http://servicebox.herokuapp.com/ 
+demo : http://servicebox.ml/
