@@ -12,7 +12,7 @@
             <strong>created: </strong>{{ service.created }}<br/>
             <strong>updated: </strong>{{ service.updated }}<br/>
 
-    {% if request.user.is_authenticated %}
+    {% if request.user.id == service.provider.id %}
         <a href="{% url 'service:service_update' pk=service.pk %}">edit</a>
     {% endif %}
 
