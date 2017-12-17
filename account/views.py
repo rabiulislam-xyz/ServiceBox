@@ -5,11 +5,15 @@ from django.db import transaction
 from django.urls import reverse
 
 from .forms import UserForm, ProfileForm
+from service.models import Service
+
 
 @login_required
 def dashboard(request):
+    user_service_list = Service.objects.my_service_list(request.user.id)
     context = {
-        'user':request.user
+        'user':request.user,
+        'user_service_list': user_service_list,
     }
     return render(request, 'account/dashboard.html', context)
 

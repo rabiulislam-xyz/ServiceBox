@@ -1,4 +1,4 @@
-<ul>
+<ulzz>
     <li><a href="/">Home</a></li>
 
     {% if request.user.is_authenticated %}
@@ -10,4 +10,4 @@
         <li><a href="{% url 'registration:signup' %}">Registration</a></li>
         <li><a href="{% url 'registration:login' %}?next={{ request.path|urlencode }}">Login</a></li>
     {% endif %}
-</ul>
+</ulzz>

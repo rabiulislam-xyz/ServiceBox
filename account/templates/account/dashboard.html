@@ -3,18 +3,29 @@
 {% block title %}Login | {{ block.super }}{% endblock %}
 
 {% block content %}
-    {#    these fields User dashboard model #}
-        username: {{ user.username }}<br/>
-        first_name: {{ user.first_name }}<br/>
-        last_name: {{ user.last_name }}<br/>
-        email: {{ user.email }}<br/><hr/>
+    <h2>User Profile</h2>
+    {#    user profile section#}
+    {#    these fields from User model #}
+    username: {{ user.username }}<br/>
+    first_name: {{ user.first_name }}<br/>
+    last_name: {{ user.last_name }}<br/>
+    email: {{ user.email }}<br/>
+    <hr/>
 
     {#    these fields from Profile model #}
-        website: {{ user.profile.website }}<br/>
-        location: {{ user.profile.location }}<br/>
-        photo url: {{ user.profile.photo }}
-        photo: <img src="{{user.profile.photo}}" height="200" width="200">
+    website: {{ user.profile.website }}<br/>
+    location: {{ user.profile.location }}<br/>
+    photo url: {{ user.profile.photo }}
+    photo: <img src="{{ user.profile.photo }}" height="200" width="200">
 
+
+    <hr>
+    <h2>My Service List</h2>
+    {#    user service list#}
+    <ul>
+        {% for service in user_service_list %}
+            <li>{{ service.name }}</li>
+        {% endfor %}</ul>
 
     <a href="{% url 'account:update_profile' %}">edit</a>
 
