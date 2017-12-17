@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Serch Service</h2>
+    <form>
+        <input type="text" placeholder="what you want!?">
+        <input type="submit">
+    </form>
+    <hr>
+
+    <h2>Top Services</h2>
+    {% for service in top_service_list %}
+        <p><a href="{% url 'service:service_detail' pk=service.pk %}">{{ service.name }}</a> -{{ service.created }}</p>
+    {% endfor %}
+{% endblock %}

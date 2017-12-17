@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'account', # for user account, dashboard, dashboard
     'registration', # for user registration, login, logout
     'service', # for service list, create, edit, delete etc.
+    'website', # for homepage (will be used for transferring frontend to SPA)
 
     # third party apps
 
