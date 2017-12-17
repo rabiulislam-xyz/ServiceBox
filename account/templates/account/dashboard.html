@@ -18,6 +18,9 @@
     photo url: {{ user.profile.photo }}
     photo: <img src="{{ user.profile.photo }}" height="200" width="200">
 
+    <br>
+    <a href="{% url 'account:update_profile' %}">edit profile info</a>
+
 
     <hr>
     <h2>My Service List</h2>
@@ -25,8 +28,9 @@
     <ul>
         {% for service in user_service_list %}
             <li>{{ service.name }}</li>
-        {% endfor %}</ul>
+        {% endfor %}
+    </ul>
 
-    <a href="{% url 'account:update_profile' %}">edit</a>
+
 
 {% endblock %}

@@ -2,10 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (CreateView,
                                   DetailView,
-                                  UpdateView,
                                   ListView)
 
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
+
 from .models import Service
+from .forms import ServiceModelForm
 
 
 class ServiceDetail(DetailView):
@@ -40,14 +44,25 @@ class ServiceCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             id=self.object.id,
         )
 
-class ServiceUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Service
-    fields = ['name','description']
-    template_name = 'service/service_create_form.html'
+@login_required
+def service_update(request, pk):
+    service = get_object_or_404(Service, pk=pk)
 
-    success_message = 'Service ID: %(id)s Successfully Updated'
-    def get_success_message(self, cleaned_data):
-        return self.success_message % dict(
-            cleaned_data,
-            id=self.object.id,
-        )
+    # checking if the current user is creator of
+    # this service, only creators can update theirs services
+    if not service.provider.id == request.user.id:
+        raise Http404
+
+    if request.method == 'POST':
+        form = ServiceModelForm(request.POST, instance=service)
+        if form.is_valid():
+            form.save()
+            return redirect(service)
+    else:
+        form = ServiceModelForm(instance=service)
+    return render(request, 'service/service_create_form.html', {'form': form})
+
+
+
+
+
