@@ -13,7 +13,7 @@
         website: {{ user.profile.website }}<br/>
         location: {{ user.profile.location }}<br/>
         photo url: {{ user.profile.photo }}
-        photo: <img src="{{user.profile.photo}}">
+        photo: <img src="{{user.profile.photo}}" height="200" width="200">
 
 
     <a href="{% url 'account:update_profile' %}">edit</a>
