@@ -1,1 +1,1 @@
-web: gunicorn servicebox.wsgi --log-file -
+web: gunicorn servicebox_project.wsgi --log-file -
