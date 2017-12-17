@@ -1,0 +1,13 @@
+<ul>
+    <li><a href="/">Home</a></li>
+
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'service:service_add' %}">Add Service</a></li>
+        <li><a href="{% url 'service:my_service_list' %}">My Services</a></li>
+        <li><a href="{% url 'registration:logout' %}">Logout</a></li>
+    {% else %}
+        <li><a href="{% url 'registration:signup' %}">Registration</a></li>
+        <li><a href="{% url 'registration:login' %}?next={{ request.path|urlencode }}">Login</a></li>
+    {% endif %}
+</ul>

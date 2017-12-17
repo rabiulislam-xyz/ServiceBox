@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Service | {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" class="btn btn-default" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

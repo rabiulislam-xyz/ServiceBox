@@ -1,0 +1,24 @@
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Reg. ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in service_list %}
+            <tr>
+                <th>{{ service.id }}</th>
+                <td><a href="{% url 'service:service_detail' pk=service.pk %}">
+                    {{ service.name }}
+                </a></td>
+                <td>{{ service.description }}</td>
+            </tr>
+        {% empty %}
+            <p>No Service Created yet.</p>
+        {% endfor %}
+    </table>
+
+{% endblock %}

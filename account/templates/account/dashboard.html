@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Dashboard</title>
-</head>
-    <body>
-    {#    these fields User profile model #}
+{% extends 'base.html' %}
+
+{% block title %}Login | {{ block.super }}{% endblock %}
+
+{% block content %}
+    {#    these fields User dashboard model #}
         username: {{ user.username }}<br/>
         first_name: {{ user.first_name }}<br/>
         last_name: {{ user.last_name }}<br/>
@@ -19,5 +17,5 @@
 
 
     <a href="{% url 'account:update_profile' %}">edit</a>
-    </body>
-</html>
+
+{% endblock %}

@@ -32,8 +32,9 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     # custom apps
-    'account', # for user account, profile, dashboard
+    'account', # for user account, dashboard, dashboard
     'registration', # for user registration, login, logout
+    'service', # for service list, create, edit, delete etc.
 
     # third party apps
 
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'servicebox_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,4 +125,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
+# login/logout/password change settings
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/registration/login/'

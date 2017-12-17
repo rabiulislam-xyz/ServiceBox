@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Service | {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+            <strong>ID: </strong>{{ service.id }}<br/>
+            <strong>Name: </strong>{{ service.name }}<br/>
+            <strong>Description: </strong>{{ service.description }}<br/>
+            <strong>Provider: </strong>{{ service.provider.username }}<br/>
+            <strong>created: </strong>{{ service.created }}<br/>
+            <strong>updated: </strong>{{ service.updated }}<br/>
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'service:service_update' pk=service.pk %}">edit</a>
+    {% endif %}
+
+{% endblock %}

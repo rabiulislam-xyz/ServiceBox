@@ -7,11 +7,11 @@ from django.urls import reverse
 from .forms import UserForm, ProfileForm
 
 @login_required
-def profile(request):
+def dashboard(request):
     context = {
         'user':request.user
     }
-    return render(request, 'account/profile.html', context)
+    return render(request, 'account/dashboard.html', context)
 
 
 @login_required
@@ -33,7 +33,7 @@ def update_profile(request):
             current_user.profile.location = profile_form.cleaned_data.get('location')
 
             current_user.save()
-            return redirect(reverse('account:profile'))
+            return redirect(reverse('account:dashboard'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
