@@ -2,14 +2,20 @@
 
 {% block content %}
     <h2>Search Service</h2>
-    <form>
-        <input type="text" placeholder="what you want!?">
+    <form method="post" action="">{% csrf_token %}
+        <input name="q" type="text" placeholder="what you want!?">
         <input type="submit">
     </form>
+
+    {% if search_result %}
+        <b>Search Results</b>
+        {{ search_result }}
+    {% endif %}
     <hr>
 
     <h2>Top Services</h2>
     {% for service in top_service_list %}
         <p><a href="{% url 'service:service_detail' pk=service.pk %}">{{ service.name }}</a> -{{ service.created }}</p>
     {% endfor %}
+
 {% endblock %}

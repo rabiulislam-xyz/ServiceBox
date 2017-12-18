@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f)ce8z9&p9g3!bn3$2c0*1-sfj3r8xi+zojr2kz*@w6y6=4nsh'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','f)ce8z9&p9g3!bn3$2c0*1-sfj3r8xi+zojr2kz*@w6y6=4nsh')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ["*"]
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'website', # for homepage (will be used for transferring frontend to SPA)
 
     # third party apps
+    'algoliasearch_django', # for search services, providers ...
 
     # builtin apps
     'django.contrib.admin',
@@ -150,3 +151,9 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
+
+# algolia search settings
+ALGOLIA = {
+    'APPLICATION_ID': os.environ.get("ALGOLIA_APPLICATION_ID", "VAJLWVZMHQ"),
+    'API_KEY': os.environ.get("ALGOLIA_API_KEY", "")
+}
