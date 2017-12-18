@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Search Service</h2>
+    <form method="get" action="{% url 'website:search' %}">
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+
+    {% if results %}
+        <hr><br>
+        <b>Builtin Search Results</b>
+        {% for result in results %}
+            <p><a href="{% url 'service:service_detail' pk=result.pk %}">{{ result }}</a></p>
+        {% endfor %}
+    {% else %}
+        <p>No result found on builtin search</p>
+    {% endif %}
+
+
+    {% if results %}
+        <hr><br>
+        <b>Algolia Search result</b>
+        {% for result in algolia_results.hits %}
+            <p><a href="{% url 'service:service_detail' pk=result.objectID %}">{{ result.name }}</a></p>
+        {% endfor %}
+    {% else %}
+        <p>No result found on algolia search</p>
+    {% endif %}
+
+{% endblock %}

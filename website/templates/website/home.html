@@ -2,16 +2,10 @@
 
 {% block content %}
     <h2>Search Service</h2>
-    <form method="post" action="">{% csrf_token %}
+    <form method="get" action="{% url 'website:search' %}">
         <input name="q" type="text" placeholder="what you want!?">
         <input type="submit">
     </form>
-
-    {% if search_result %}
-        <b>Search Results</b>
-        {{ search_result }}
-    {% endif %}
-    <hr>
 
     <h2>Top Services</h2>
     {% for service in top_service_list %}
