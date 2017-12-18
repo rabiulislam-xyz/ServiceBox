@@ -7,6 +7,7 @@ from .forms import ServiceModelForm
 
 
 def service_detial(request, pk):
+    # detail page for single service object
     service = get_object_or_404(Service, pk=pk)
     context = {
         'service': service
@@ -15,7 +16,7 @@ def service_detial(request, pk):
 
 
 def service_list(request):
-    print(request)
+    # all service list (it can be top list)
     all_services = Service.objects.all()
     context = {
         'service_list': all_services
@@ -24,6 +25,7 @@ def service_list(request):
 
 
 def my_service_list(request):
+    # services current user created
     my_services = Service.objects.my_service_list(request.user.id)
     context = {
         'service_list': my_services
@@ -36,7 +38,7 @@ def service_create(request):
     if request.method == 'POST':
         form = ServiceModelForm(request.POST)
         if form.is_valid():
-            # ServiceModelForm not creating 'User ForeignKey'
+            # ServiceModelForm not creating 'User' ForeignKey
             # thus it not adding service.provider field to current user
             # so we have to add it manually!
             form.instance.provider = request.user
@@ -53,9 +55,9 @@ def service_update(request, pk):
     service = get_object_or_404(Service, pk=pk)
 
     # checking if the current user is creator of
-    # this service, only creators can update theirs services
+    # this service, only creators can update their services
     if not service.provider.id == request.user.id:
-        raise Http404
+        raise Http404 # this http code should be change to 401 not authorized
 
     if request.method == 'POST':
         form = ServiceModelForm(request.POST, instance=service)

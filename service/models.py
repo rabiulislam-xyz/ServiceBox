@@ -5,6 +5,7 @@ from django.shortcuts import reverse
 
 class ServiceManager(models.Manager):
     def my_service_list(self, id):
+        # filter and return all services created by current user
         return self.filter(provider__id=id)
 
 
