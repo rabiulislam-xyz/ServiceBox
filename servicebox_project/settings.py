@@ -155,5 +155,5 @@ DATABASES['default'].update(db_from_env)
 # algolia search settings
 ALGOLIA = {
     'APPLICATION_ID': os.environ.get("ALGOLIA_APPLICATION_ID", "VAJLWVZMHQ"),
-    'API_KEY': os.environ.get("ALGOLIA_API_KEY", "5c45fce7760395b35f99ca26587fce93")
+    'API_KEY': os.environ.get("ALGOLIA_API_KEY", "")
 }

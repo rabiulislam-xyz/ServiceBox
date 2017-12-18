@@ -9,7 +9,6 @@ def user_signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-
             # after new user created
             # logged in to dashboard
             username = form.cleaned_data.get('username')
